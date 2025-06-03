@@ -29,15 +29,18 @@ const AssistantModal = () => {
 
   const generarLectura = async (nombre: string, numeroCamino: number) => {
     try {
-      const response = await fetch('/api/generar-lectura', {
+      const response = await fetch("https://logena-sv25.vercel.app/api/generar-lectura", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nombre, numeroCamino }),
       });
 
       const data = await response.json();
-      if (data.lectura) setLectura(data.lectura);
-      else setLectura("No se pudo generar la lectura.");
+      if (data.lectura) {
+        setLectura(data.lectura);
+      } else {
+        setLectura("No se pudo generar la lectura.");
+      }
     } catch (error) {
       console.error("Error:", error);
       setLectura("Error al conectar con el asistente.");
@@ -73,7 +76,6 @@ const AssistantModal = () => {
 
   return (
     <>
-      {/* Botón flotante */}
       <button
         onClick={abrirModal}
         className="fixed bottom-10 left-1/2 transform -translate-x-1/2 z-50 bg-gradient-to-r from-violet-500 to-purple-600 text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:scale-105 transition"
@@ -81,7 +83,6 @@ const AssistantModal = () => {
         Iniciar tu lectura
       </button>
 
-      {/* Modal */}
       {showModal && (
         <div
           className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
