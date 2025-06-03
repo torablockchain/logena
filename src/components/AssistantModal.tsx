@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const AssistantModal = () => {
   const [showModal, setShowModal] = useState(false);
