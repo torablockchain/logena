@@ -1,147 +1,82 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Check } from "lucide-react";
-
-enum PopularPlanType {
-  NO = 0,
-  YES = 1,
-}
-
-interface PricingProps {
-  title: string;
-  popular: PopularPlanType;
-  price: number;
-  description: string;
-  buttonText: string;
-  benefitList: string[];
-}
-
-const pricingList: PricingProps[] = [
-  {
-    title: "Free",
-    popular: 0,
-    price: 0,
-    description:
-      "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
-    buttonText: "Get Started",
-    benefitList: [
-      "1 Team member",
-      "2 GB Storage",
-      "Upto 4 pages",
-      "Community support",
-      "lorem ipsum dolor",
-    ],
-  },
-  {
-    title: "Premium",
-    popular: 1,
-    price: 5,
-    description:
-      "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
-    buttonText: "Start Free Trial",
-    benefitList: [
-      "4 Team member",
-      "4 GB Storage",
-      "Upto 6 pages",
-      "Priority support",
-      "lorem ipsum dolor",
-    ],
-  },
-  {
-    title: "Enterprise",
-    popular: 0,
-    price: 40,
-    description:
-      "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
-    buttonText: "Contact US",
-    benefitList: [
-      "10 Team member",
-      "8 GB Storage",
-      "Upto 10 pages",
-      "Priority support",
-      "lorem ipsum dolor",
-    ],
-  },
-];
+import { motion } from "framer-motion";
 
 export const Pricing = () => {
   return (
     <section
       id="pricing"
-      className="container py-24 sm:py-32"
+      className="w-full bg-[#f9f8ff] dark:bg-[#121212] py-28 px-4 md:px-20"
     >
-      <h2 className="text-3xl md:text-4xl font-bold text-center">
-        Get
-        <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
-          {" "}
-          Unlimited{" "}
-        </span>
-        Access
-      </h2>
-      <h3 className="text-xl text-center text-muted-foreground pt-4 pb-8">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias
-        reiciendis.
-      </h3>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {pricingList.map((pricing: PricingProps) => (
-          <Card
-            key={pricing.title}
-            className={
-              pricing.popular === PopularPlanType.YES
-                ? "drop-shadow-xl shadow-black/10 dark:shadow-white/10"
-                : ""
-            }
+      <div className="max-w-6xl mx-auto text-left">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-5xl font-bold font-sora mb-12"
+        >
+          Elegí tu camino
+        </motion.h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Plan Gratuito */}
+          <motion.div
+            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.4 }}
+            className="border border-gray-300 dark:border-gray-700 rounded-2xl p-6 bg-white dark:bg-[#1c1c1c] shadow-sm"
           >
-            <CardHeader>
-              <CardTitle className="flex item-center justify-between">
-                {pricing.title}
-                {pricing.popular === PopularPlanType.YES ? (
-                  <Badge
-                    variant="secondary"
-                    className="text-sm text-primary"
-                  >
-                    Most popular
-                  </Badge>
-                ) : null}
-              </CardTitle>
-              <div>
-                <span className="text-3xl font-bold">${pricing.price}</span>
-                <span className="text-muted-foreground"> /month</span>
-              </div>
+            <h3 className="text-2xl font-bold font-sora mb-4">Gratuito</h3>
+            <p className="text-gray-500 dark:text-gray-400 mb-6">
+              Comenzá tu camino interior sin costo.
+            </p>
+            <ul className="text-sm space-y-2 text-gray-700 dark:text-gray-300">
+              <li>✓ 1 lectura mensual</li>
+              <li>✓ Acceso básico al perfil numerológico</li>
+              <li>✓ Tips de autoconocimiento</li>
+            </ul>
+          </motion.div>
 
-              <CardDescription>{pricing.description}</CardDescription>
-            </CardHeader>
+          {/* Plan Intermedio */}
+          <motion.div
+            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.5 }}
+            className="border border-violet-400 rounded-2xl p-6 bg-gradient-to-b from-violet-100 to-white dark:from-[#2a2a48] dark:to-[#1c1c1c] shadow-md"
+          >
+            <h3 className="text-2xl font-bold font-sora mb-4">Esencial</h3>
+            <p className="text-gray-700 dark:text-gray-300 mb-6">
+              Ideal para quienes buscan claridad y dirección.
+            </p>
+            <ul className="text-sm space-y-2 text-gray-800 dark:text-gray-200">
+              <li>✓ 4 lecturas mensuales</li>
+              <li>✓ Acceso completo al perfil numerológico</li>
+              <li>✓ Reportes descargables</li>
+              <li>✓ Acceso anticipado a novedades</li>
+            </ul>
+          </motion.div>
 
-            <CardContent>
-              <Button className="w-full">{pricing.buttonText}</Button>
-            </CardContent>
-
-            <hr className="w-4/5 m-auto mb-4" />
-
-            <CardFooter className="flex">
-              <div className="space-y-4">
-                {pricing.benefitList.map((benefit: string) => (
-                  <span
-                    key={benefit}
-                    className="flex"
-                  >
-                    <Check className="text-green-500" />{" "}
-                    <h3 className="ml-2">{benefit}</h3>
-                  </span>
-                ))}
-              </div>
-            </CardFooter>
-          </Card>
-        ))}
+          {/* Plan Premium */}
+          <motion.div
+            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.6 }}
+            className="border border-gray-300 dark:border-gray-700 rounded-2xl p-6 bg-white dark:bg-[#1c1c1c] shadow-sm"
+          >
+            <h3 className="text-2xl font-bold font-sora mb-4">Premium</h3>
+            <p className="text-gray-500 dark:text-gray-400 mb-6">
+              Para quienes buscan ir más allá del número.
+            </p>
+            <ul className="text-sm space-y-2 text-gray-700 dark:text-gray-300">
+              <li>✓ Acceso ilimitado</li>
+              <li>✓ Informe de compatibilidad</li>
+              <li>✓ Sesiones personalizadas</li>
+              <li>✓ Soporte prioritario</li>
+            </ul>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
 };
+
+export default Pricing;

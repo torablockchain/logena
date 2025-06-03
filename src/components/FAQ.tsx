@@ -1,91 +1,71 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { useState } from "react";
+import { motion } from "framer-motion";
 
-interface FAQProps {
-  question: string;
-  answer: string;
-  value: string;
-}
-
-const FAQList: FAQProps[] = [
+const faqItems = [
   {
-    question: "Is this template free?",
-    answer: "Yes. It is a free ChadcnUI template.",
-    value: "item-1",
-  },
-  {
-    question: "Lorem ipsum dolor sit amet consectetur adipisicing elit?",
+    question: "¿Qué es una lectura numerológica?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint labore quidem quam? Consectetur sapiente iste rerum reiciendis animi nihil nostrum sit quo, modi quod.",
-    value: "item-2",
+      "Es una herramienta de autoconocimiento basada en los números que componen tu fecha de nacimiento y tu nombre completo. Te ayuda a entender tus talentos, desafíos y propósito.",
   },
   {
-    question:
-      "Lorem ipsum dolor sit amet  Consectetur natus dolores minus quibusdam?",
+    question: "¿Cómo empiezo mi primera lectura gratuita?",
     answer:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore qui nostrum reiciendis veritatis necessitatibus maxime quis ipsa vitae cumque quo?",
-    value: "item-3",
+      "Solo necesitás crear tu perfil en Logena con tu nombre completo y fecha de nacimiento. ¡El sistema hace el resto!",
   },
   {
-    question: "Lorem ipsum dolor sit amet, consectetur adipisicing elit?",
-    answer: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
-    value: "item-4",
-  },
-  {
-    question:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur natus?",
+    question: "¿Qué tan precisas son las lecturas?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint labore quidem quam? Consectetur sapiente iste rerum reiciendis animi nihil nostrum sit quo, modi quod.",
-    value: "item-5",
+      "La numerología es una herramienta simbólica. La precisión depende de tu apertura y cómo integrás la información a tu proceso personal.",
+  },
+  {
+    question: "¿Qué diferencia hay entre los planes?",
+    answer:
+      "El plan gratuito ofrece una lectura mensual, mientras que los pagos habilitan más lecturas, compatibilidades y acceso a reportes descargables.",
   },
 ];
 
 export const FAQ = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggle = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
-    <section
-      id="faq"
-      className="container py-24 sm:py-32"
-    >
-      <h2 className="text-3xl md:text-4xl font-bold mb-4">
-        Frequently Asked{" "}
-        <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
-          Questions
-        </span>
-      </h2>
-
-      <Accordion
-        type="single"
-        collapsible
-        className="w-full AccordionRoot"
-      >
-        {FAQList.map(({ question, answer, value }: FAQProps) => (
-          <AccordionItem
-            key={value}
-            value={value}
-          >
-            <AccordionTrigger className="text-left">
-              {question}
-            </AccordionTrigger>
-
-            <AccordionContent>{answer}</AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
-
-      <h3 className="font-medium mt-4">
-        Still have questions?{" "}
-        <a
-          rel="noreferrer noopener"
-          href="#"
-          className="text-primary transition-all border-primary hover:border-b-2"
+    <section id="faq" className="bg-[#f9f8ff] dark:bg-[#121212] py-28 px-4 md:px-20">
+      <div className="max-w-5xl mx-auto text-left">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-5xl font-bold font-sora mb-12"
         >
-          Contact us
-        </a>
-      </h3>
+          Preguntas frecuentes
+        </motion.h2>
+
+        <div className="space-y-6">
+          {faqItems.map((item, index) => (
+            <div
+              key={index}
+              className="border border-gray-300 dark:border-gray-700 rounded-xl p-4 bg-white dark:bg-[#1c1c1c] shadow-sm"
+            >
+              <button
+                onClick={() => toggle(index)}
+                className="w-full text-left flex justify-between items-center font-sora text-lg"
+              >
+                <span>{item.question}</span>
+                <span>{openIndex === index ? "−" : "+"}</span>
+              </button>
+              {openIndex === index && (
+                <p className="mt-3 text-sm text-gray-700 dark:text-gray-300">{item.answer}</p>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 };
+
+export default FAQ;

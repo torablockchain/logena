@@ -1,168 +1,52 @@
-import { LogoIcon } from "./Icons";
+import { Github, Instagram, Mail } from "lucide-react";
 
-export const Footer = () => {
+const Footer = () => {
   return (
-    <footer id="footer">
-      <hr className="w-11/12 mx-auto" />
-
-      <section className="container py-20 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-x-12 gap-y-8">
-        <div className="col-span-full xl:col-span-2">
-          <a
-            rel="noreferrer noopener"
-            href="/"
-            className="font-bold text-xl flex"
-          >
-            <LogoIcon />
-            ShadcnUI/React
-          </a>
+    <footer className="bg-[#0a0a0a] text-white px-6 md:px-12 py-16">
+      <div className="max-w-7xl mx-auto flex flex-col gap-10 md:gap-6">
+        <div>
+          <h3 className="text-2xl font-bold font-sora mb-2">LOGENA</h3>
+          <p className="text-gray-400 text-sm font-sora max-w-md">
+            Plataforma de numerología emocional guiada por inteligencia artificial. Tu camino comienza en vos.
+          </p>
         </div>
 
-        <div className="flex flex-col gap-2">
-          <h3 className="font-bold text-lg">Follow US</h3>
-          <div>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          <div className="flex gap-4 text-gray-400">
             <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
+              href="mailto:contacto@logena.io"
+              className="hover:text-white transition"
+              aria-label="Email"
             >
-              Github
+              <Mail className="w-5 h-5" />
+            </a>
+            <a
+              href="https://instagram.com/logena.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition"
+              aria-label="Instagram"
+            >
+              <Instagram className="w-5 h-5" />
+            </a>
+            <a
+              href="https://github.com/tu-repo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition"
+              aria-label="GitHub"
+            >
+              <Github className="w-5 h-5" />
             </a>
           </div>
 
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Twitter
-            </a>
-          </div>
-
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Dribbble
-            </a>
-          </div>
+          <p className="text-xs text-gray-500 font-sora">
+            © {new Date().getFullYear()} Logena. Todos los derechos reservados.
+          </p>
         </div>
-
-        <div className="flex flex-col gap-2">
-          <h3 className="font-bold text-lg">Platforms</h3>
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Web
-            </a>
-          </div>
-
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Mobile
-            </a>
-          </div>
-
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Desktop
-            </a>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <h3 className="font-bold text-lg">About</h3>
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Features
-            </a>
-          </div>
-
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Pricing
-            </a>
-          </div>
-
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              FAQ
-            </a>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <h3 className="font-bold text-lg">Community</h3>
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Youtube
-            </a>
-          </div>
-
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Discord
-            </a>
-          </div>
-
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Twitch
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="container pb-14 text-center">
-        <h3>
-          &copy; 2024 Landing page made by{" "}
-          <a
-            rel="noreferrer noopener"
-            target="_blank"
-            href="https://www.linkedin.com/in/leopoldo-miranda/"
-            className="text-primary transition-all border-primary hover:border-b-2"
-          >
-            Leo Miranda
-          </a>
-        </h3>
-      </section>
+      </div>
     </footer>
   );
 };
+
+export default Footer;
