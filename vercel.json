@@ -1,11 +1,9 @@
 {
     "functions": {
       "api/*.ts": {
-        "runtime": "vercel/node"
+        "runtime": "vercel/node@18",
+        "includeFiles": "tsconfig.api.json"
       }
-    },
-    "routes": [
-      { "src": "/api/(.*)", "dest": "/api/$1.ts" }
-    ]
+    }
   }
   
